@@ -1,0 +1,2 @@
+#!/bin/bash
+cho argument nr 1: $1
