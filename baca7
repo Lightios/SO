@@ -1,0 +1,60 @@
+# Michal Cyran
+#!/bin/bash
+
+read X
+i=0
+declare -a strings
+declare -a counters
+
+while [[  $X != "" ]]
+do
+	al_found=0
+
+	for (( y = 0; y < i ; y++ ))
+	do
+		if (( ${strings[y]} == $X ))
+		then
+			al_found=1
+			counters[$y]=$((counters[y] + 1))
+		fi
+	done
+
+	if (( al_found == 0 ))
+	then
+		strings[$i]=$X
+		counters[$i]=1
+		i=$((i + 1))
+	fi
+	read X
+done
+
+
+highest=${counters[0]}
+index=0
+echo countery
+# find the highest counter
+for (( x = 1; x < i; x++ ))
+do
+	echo ${counters[x]}
+	if (( ${counters[x]} < $highest ))
+	then
+		highest=${counters[x]}
+		index=$x
+	fi
+done
+
+echo $highest
+
+
+# echo ${strings[0]}
+# echo ${strings[1]}
+
+# echo ${counters[0]}
+# echo ${counters[1]}
+
+# echo "h index"
+# echo $highest
+# echo $index
+# echo $i
+
+echo ${strings[index]} $highest
